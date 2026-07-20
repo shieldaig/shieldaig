@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create account · Shieldaig</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="auth-wrap">
+    <div class="auth-side">
+      <div class="brand" style="color:#EFEAE0;"><span>Shieldaig</span><small style="color:#E8A67C;">NC500 · Paddlers' Log</small></div>
+      <div>
+        <h1>Every launch<br>starts somewhere.</h1>
+        <p>Join paddlers logging routes from Applecross to John o' Groats. Post photos, trade tide tips, and message the club direct.</p>
+      </div>
+      <div class="auth-coords">57.5372° N, 5.6539° W — SHIELDAIG, WESTER ROSS</div>
+    </div>
+    <div class="auth-form-side">
+      <div class="auth-card">
+        <div class="brand"><span>Shieldaig</span><small>NC500 · Paddlers' Log</small></div>
+        <h2>Create your account</h2>
+        <p class="sub">Takes a minute. No wetsuit required.</p>
+        <div class="error-msg" id="form-error"></div>
+        <form id="signup-form" novalidate>
+          <div class="field">
+            <label for="su-name">Full name</label>
+            <input type="text" id="su-name" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="su-username">Username</label>
+            <input type="text" id="su-username" placeholder="lowercase, no spaces" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <label for="su-email">Email</label>
+            <input type="email" id="su-email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="su-password">Password</label>
+            <input type="password" id="su-password" autocomplete="new-password" required minlength="6">
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Create account</button>
+        </form>
+        <div class="auth-switch">Already paddling with us? <a href="login.html" class="btn-text" style="font-weight:600;">Log in</a></div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/auth.js"></script>
+</body>
+</html>

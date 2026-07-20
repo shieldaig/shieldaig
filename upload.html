@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New log · Shieldaig</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .upload-wrap{max-width:600px;margin:0 auto;padding:20px 18px 60px;}
+  .drop-zone{
+    border:2px dashed var(--color-border);border-radius:var(--radius-l);
+    padding:60px 20px;text-align:center;cursor:pointer;color:var(--color-ink-soft);
+    transition:border-color .15s ease, background .15s ease;
+  }
+  .drop-zone:hover,.drop-zone.dragover{border-color:var(--color-accent);background:var(--color-bg-alt);}
+  .drop-zone svg{width:40px;height:40px;margin:0 auto 12px;color:var(--color-secondary);}
+  #upload-preview{border-radius:var(--radius-l);overflow:hidden;border:1px solid var(--color-border);margin-bottom:16px;}
+  #upload-preview img,#upload-preview video{width:100%;max-height:440px;object-fit:cover;background:#000;}
+</style>
+</head>
+<body>
+  <div class="app">
+    <nav class="sidenav" id="sidenav"></nav>
+    <main class="main">
+      <div class="main-header">
+        <h1>New log entry</h1>
+        <div class="sub">Photo, video, or just a note from the water</div>
+      </div>
+      <div class="upload-wrap">
+        <div class="drop-zone" id="drop-zone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <div><strong>Click to add a photo or video</strong></div>
+          <div style="font-size:12.5px;margin-top:4px;">or drag one in here</div>
+        </div>
+        <input type="file" id="file-input" accept="image/*,video/*" class="hidden">
+        <div id="upload-preview" class="hidden"></div>
+
+        <div id="upload-body" class="hidden">
+          <div class="field">
+            <label for="caption">Caption</label>
+            <textarea id="caption" rows="3" placeholder="Where'd you paddle today?"></textarea>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn btn-ghost" id="change-media" type="button">Change media</button>
+            <button class="btn btn-primary" id="post-btn" type="button" style="margin-left:auto;">Log it</button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <aside class="rail">
+      <div class="rail-card">
+        <h3>Log tips</h3>
+        <p style="font-size:13px;color:var(--color-ink-soft);margin:0 0 8px;">Landscape photos crop best in the feed.</p>
+        <p style="font-size:13px;color:var(--color-ink-soft);margin:0;">Videos play muted in the grid — add context in your caption.</p>
+      </div>
+    </aside>
+  </div>
+  <nav class="bottomnav" id="bottomnav"></nav>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/upload.js"></script>
+</body>
+</html>

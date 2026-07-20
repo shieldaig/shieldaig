@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Messages · Shieldaig</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app app-full">
+    <nav class="sidenav" id="sidenav"></nav>
+    <main class="main" style="border-right:none;">
+      <div class="msg-layout">
+        <div class="chat-list">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 16px 8px;">
+            <h1 style="font-family:var(--font-display);font-size:19px;margin:0;">Messages</h1>
+            <button class="icon-btn" id="new-msg-btn" title="New message"></button>
+          </div>
+          <div id="chat-list" class="chat-list-items"><div class="loader"></div></div>
+        </div>
+        <div id="chat-empty" class="chat-pane" style="align-items:center;justify-content:center;">
+          <div class="empty-state"><h3>Your messages</h3><p>Pick a conversation, or start one from a profile.</p></div>
+        </div>
+        <div class="chat-pane hidden" id="chat-pane">
+          <div class="chat-pane-head" id="chat-head-info"></div>
+          <div class="chat-msgs" id="chat-msgs"></div>
+          <form class="chat-input-row" id="chat-form">
+            <input type="text" id="chat-input" placeholder="Write a message…" autocomplete="off">
+            <button class="icon-btn" type="submit" id="chat-send"></button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+  <nav class="bottomnav" id="bottomnav"></nav>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/messages.js"></script>
+  <script type="module">
+    import { ICONS } from "./js/utils.js";
+    document.getElementById("new-msg-btn").innerHTML = ICONS.plus;
+    document.getElementById("chat-send").innerHTML = ICONS.send;
+  </script>
+</body>
+</html>
