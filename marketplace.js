@@ -1,6 +1,6 @@
 import { db } from "./firebase-config.js";
 import { requireAuth, wireLogout } from "./session.js";
-import { renderNav, avatarHTML, escapeHtml, timeAgo, toast, compressImageToDataURL } from "./utils.js";
+import { renderNav, avatarHTML, escapeHtml, timeAgo, toast, compressImageToDataURL, showBusyNote, hideBusyNote } from "./utils.js";
 import {
   collection, addDoc, doc, updateDoc, deleteDoc, getDocs, query,
   where, orderBy, serverTimestamp
@@ -102,7 +102,14 @@ function wireNewListing(){
     btn.disabled = true; btn.textContent = "Posting…";
     try{
       let imageURL = "";
-      if(pendingFile) imageURL = await compressImageToDataURL(pendingFile, { maxDim: 900, maxBytes: 400000 });
+      if(pendingFile){
+        const note = showBusyNote(btn);
+        try{
+          imageURL = await compressImageToDataURL(pendingFile, { maxDim: 900, maxBytes: 400000 });
+        } finally {
+          hideBusyNote(btn);
+        }
+      }
       await addDoc(collection(db,"marketplace"), {
         uid: me.uid,
         sellerName: myProfile?.displayName || me.displayName || "Paddler",
