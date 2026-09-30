@@ -1,6 +1,6 @@
 import { db } from "./firebase-config.js";
 import { requireAuth, wireLogout } from "./session.js";
-import { renderNav, avatarHTML, escapeHtml, toast, compressImageToDataURL, ICONS } from "./utils.js";
+import { renderNav, avatarHTML, escapeHtml, toast, compressImageToDataURL, showBusyNote, hideBusyNote, ICONS } from "./utils.js";
 import {
   doc, getDoc, updateDoc, collection, query, where, orderBy, getDocs
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
@@ -98,7 +98,12 @@ function openEditModal(p){
       };
       const file = wrap.querySelector("#ed-photo").files[0];
       if(file){
-        updates.photoURL = await compressImageToDataURL(file, { maxDim: 400, maxBytes: 220000 });
+        const note = showBusyNote(saveBtn);
+        try{
+          updates.photoURL = await compressImageToDataURL(file, { maxDim: 400, maxBytes: 220000 });
+        } finally {
+          hideBusyNote(saveBtn);
+        }
       }
       await updateDoc(doc(db,"users",me.uid), updates);
       toast("Profile updated");
