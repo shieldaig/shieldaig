@@ -1,6 +1,6 @@
 import { db } from "./firebase-config.js";
 import { requireAuth, wireLogout } from "./session.js";
-import { renderNav, toast, compressImageToDataURL } from "./utils.js";
+import { renderNav, toast, compressImageToDataURL, showBusyNote, hideBusyNote } from "./utils.js";
 import { collection, addDoc, doc, updateDoc, increment, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
 let me = null, myProfile = null, file = null;
@@ -57,7 +57,12 @@ function wireForm(){
       let mediaURL = "", mediaType = "";
       if(file){
         mediaType = "image";
-        mediaURL = await compressImageToDataURL(file);
+        const note = showBusyNote(postBtn);
+        try{
+          mediaURL = await compressImageToDataURL(file);
+        } finally {
+          hideBusyNote(postBtn);
+        }
       }
       await addDoc(collection(db,"posts"), {
         uid: me.uid,
