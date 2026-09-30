@@ -1,6 +1,6 @@
 import { auth, db } from "./firebase-config.js";
 import { requireAuth, wireLogout } from "./session.js";
-import { renderNav, avatarHTML, escapeHtml, timeAgo, toast, ICONS, compressImageToDataURL } from "./utils.js";
+import { renderNav, avatarHTML, escapeHtml, timeAgo, toast, ICONS, compressImageToDataURL, showBusyNote, hideBusyNote } from "./utils.js";
 import {
   collection, addDoc, doc, getDoc, getDocs, deleteDoc, onSnapshot,
   query, where, orderBy, limit, serverTimestamp, runTransaction, updateDoc, increment, Timestamp
@@ -55,7 +55,12 @@ function wireComposer(){
       let mediaURL = "", mediaType = "";
       if(pendingFile){
         mediaType = "image";
-        mediaURL = await compressImageToDataURL(pendingFile);
+        const note = showBusyNote(postBtn);
+        try{
+          mediaURL = await compressImageToDataURL(pendingFile);
+        } finally {
+          hideBusyNote(postBtn);
+        }
       }
       await addDoc(collection(db,"posts"), {
         uid: me.uid,
