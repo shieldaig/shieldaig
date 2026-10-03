@@ -8,12 +8,13 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.14.1/firebas
 // See js/functions-config.js and STAGES.md.
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBYSc-5T0IsFFDFxT1r4ntFmZAdAF-hqWM",
+    authDomain: "shieldaig-1.firebaseapp.com",
+    projectId: "shieldaig-1",
+    storageBucket: "shieldaig-1.firebasestorage.app",
+    messagingSenderId: "448954018164",
+    appId: "1:448954018164:web:061149bed22f615c79e421",
+    measurementId: "G-LB3FTB87FE"  
 };
 
 export const app = initializeApp(firebaseConfig);
