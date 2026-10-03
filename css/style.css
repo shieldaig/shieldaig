@@ -123,13 +123,15 @@ ul{list-style:none;margin:0;padding:0;}
 .auth-switch{margin-top:22px;font-size:13.5px;color:var(--color-ink-soft);text-align:center;}
 
 /* ===== APP SHELL ===== */
-.app{display:grid;grid-template-columns:var(--nav-w) minmax(0,600px) var(--rail-w);gap:24px;max-width:1180px;margin:0 auto;padding:0 16px;align-items:start;}
-.app-full{grid-template-columns:var(--nav-w) 1fr;}
-@media(max-width:1040px){
-  .app, .app-full{grid-template-columns:minmax(0,1fr);padding:0 0 60px;}
-  .rail{display:none;}
-  .sidenav{display:none;}
+.app, .app-full{
+  display:grid;grid-template-columns:minmax(0,1fr);gap:24px;max-width:700px;
+  margin:0 auto;padding:0 16px 60px;align-items:start;
 }
+/* Vertical nav is eliminated entirely — the horizontal bar at the
+   bottom of the screen (.bottomnav) is the only navigation, at every
+   screen size, not just on mobile. */
+.rail{display:none !important;}
+.sidenav{display:none !important;}
 .header-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
 @media(max-width:480px){
   .header-actions{flex-direction:column;align-items:stretch;}
@@ -159,8 +161,7 @@ ul{list-style:none;margin:0;padding:0;}
 .avatar-56{width:56px;height:56px;font-size:18px;}
 .avatar-88{width:88px;height:88px;font-size:26px;}
 
-.main{min-height:100vh;border-right:1px solid var(--color-border-2);}
-@media(max-width:1040px){.main{border-right:none;}}
+.main{min-height:100vh;}
 .main-header{position:sticky;top:0;z-index:5;background:rgba(246,243,236,0.88);backdrop-filter:blur(8px);padding:16px 18px 12px;border-bottom:1px solid var(--color-border-2);}
 .main-header h1{font-family:var(--font-display);font-size:21px;margin:0;font-weight:600;}
 .main-header .sub{font-size:12.5px;color:var(--color-ink-soft);font-family:var(--font-mono);margin-top:2px;}
@@ -254,15 +255,12 @@ ul{list-style:none;margin:0;padding:0;}
 .chat-input-row input{flex:1;border:1px solid var(--color-border);border-radius:999px;padding:10px 16px;font-size:14px;font-family:var(--font-body);}
 .chat-input-row input:focus{outline:none;border-color:var(--color-primary);}
 
-.bottomnav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:20;background:var(--color-surface);border-top:1px solid var(--color-border);justify-content:center;align-items:center;gap:2px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));overflow-x:auto;}
-@media(max-width:1040px){.bottomnav{display:flex;}}
+.bottomnav{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:20;background:var(--color-surface);border-top:1px solid var(--color-border);justify-content:center;align-items:center;gap:2px;padding:6px 6px calc(6px + env(safe-area-inset-bottom));overflow-x:auto;}
 .bottomnav a{color:var(--color-ink-soft);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;padding:5px 8px;border-radius:10px;flex:none;position:relative;}
 .bottomnav a.active{color:var(--color-primary-d);background:var(--color-bg-alt);}
 .bottomnav svg{width:18px;height:18px;}
-@media(max-width:1040px){
-  .msg-layout{height:calc(100vh - 60px);}
-  .chat-list, .chat-pane{height:calc(100vh - 60px);}
-}
+.msg-layout{height:calc(100vh - 60px);}
+.chat-list, .chat-pane{height:calc(100vh - 60px);}
 
 .loader{width:22px;height:22px;border-radius:50%;border:2.5px solid var(--color-border);border-top-color:var(--color-accent);animation:spin .7s linear infinite;margin:30px auto;}
 @keyframes spin{to{transform:rotate(360deg);}}
