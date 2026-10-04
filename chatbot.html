@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Guide · Shieldaig</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app app-full">
+    <nav class="sidenav" id="sidenav"></nav>
+    <main class="main" style="border-right:none;">
+      <div class="main-header">
+        <h1>AI Guide</h1>
+        <div class="sub">Ask about the NC500 — kayaking, hikes, islands, campsites</div>
+      </div>
+      <div id="chatbot-root" style="display:flex;flex-direction:column;height:calc(100vh - 90px);">
+        <div class="chat-msgs" id="chat-msgs" style="flex:1;"></div>
+        <form class="chat-input-row" id="chat-form">
+          <input type="text" id="chat-input" placeholder="Ask about kayaking, hiking, islands…" autocomplete="off">
+          <button class="btn btn-primary btn-sm" type="submit">Ask</button>
+        </form>
+      </div>
+    </main>
+  </div>
+  <nav class="bottomnav" id="bottomnav"></nav>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log entry · Shieldaig</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="sidenav" id="sidenav"></nav>
+    <main class="main">
+      <div class="main-header" style="display:flex;align-items:center;gap:12px;">
+        <a href="javascript:history.back()" class="icon-btn" id="back-btn"></a>
+        <h1>Log entry</h1>
+      </div>
+      <div id="post-detail"><div class="loader"></div></div>
+      <form class="comment-form" id="comment-form" style="padding:14px 18px;border-top:1px solid var(--color-border-2);margin:0;">
+        <input type="text" id="comment-input" placeholder="Add a comment…" autocomplete="off">
+        <button class="icon-btn" type="submit" id="comment-send"></button>
+      </form>
+    </main>
+    <aside class="rail">
+      <div class="rail-card">
+        <h3>On the water</h3>
+        <p style="font-size:13px;color:var(--color-ink-soft);margin:0;">Like and comment to keep the conversation going with fellow paddlers.</p>
+      </div>
+    </aside>
+  </div>
+  <nav class="bottomnav" id="bottomnav"></nav>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/post.js"></script>
+  <script type="module">
+    import { ICONS } from "./js/utils.js";
+    document.getElementById("back-btn").innerHTML = ICONS.back;
+    document.getElementById("comment-send").innerHTML = ICONS.send;
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketplace · Shieldaig</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <nav class="sidenav" id="sidenav"></nav>
+    <main class="main">
+      <div class="main-header header-actions">
+        <div>
+          <h1>Gear Marketplace</h1>
+          <div class="sub">Buy and sell kit with fellow paddlers</div>
+        </div>
+        <button class="btn btn-primary btn-sm" id="new-listing-btn">+ List gear</button>
+      </div>
+      <div id="my-deals" style="padding:16px 16px 0;"></div>
+      <div class="profile-tabs" id="cat-tabs">
+        <div class="profile-tab active" data-cat="all">All</div>
+        <div class="profile-tab" data-cat="jacket">Jackets</div>
+        <div class="profile-tab" data-cat="tent">Tents</div>
+        <div class="profile-tab" data-cat="sleeping bag">Sleeping bags</div>
+        <div class="profile-tab" data-cat="grill">Grills</div>
+        <div class="profile-tab" data-cat="other">Other</div>
+      </div>
+      <div id="market-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;padding:16px;"></div>
+    </main>
+    <aside class="rail">
+      <div class="rail-card">
+        <h3>Selling tips</h3>
+        <p style="font-size:13px;color:var(--color-ink-soft);margin:0;">A clear photo and honest condition note gets faster replies. Arrange payment and pickup directly with the buyer via Messages.</p>
+      </div>
+    </aside>
+  </div>
+
+  <div class="hidden" id="listing-modal" style="position:fixed;inset:0;background:rgba(15,49,48,0.5);display:flex;align-items:center;justify-content:center;z-index:60;padding:20px;">
+    <div style="background:var(--color-surface);border-radius:var(--radius-l);padding:24px;max-width:420px;width:100%;max-height:88vh;overflow-y:auto;">
+      <h2 style="font-family:var(--font-display);margin:0 0 16px;">List your gear</h2>
+      <form id="listing-form">
+        <div class="field"><label>Title</label><input id="li-title" placeholder="e.g. Alpkit Kraku tent" required></div>
+        <div class="field">
+          <label>Category</label>
+          <select id="li-category">
+            <option value="jacket">Jacket</option>
+            <option value="tent">Tent</option>
+            <option value="sleeping bag">Sleeping bag</option>
+            <option value="grill">Grill</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Condition</label>
+          <select id="li-condition">
+            <option value="new">New</option>
+            <option value="used">Used</option>
+          </select>
+        </div>
+        <div class="field"><label>Description</label><textarea id="li-desc" rows="3" placeholder="Size, any wear, why you're selling…"></textarea></div>
+        <div class="field"><label>Price (£)</label><input type="number" id="li-price" min="0" step="0.01" placeholder="35" required></div>
+        <div class="field"><label>Pickup location</label><input id="li-location" placeholder="e.g. Shieldaig, or Applecross" required></div>
+        <div class="field">
+          <label>Photo (optional)</label>
+          <input type="file" id="li-photo" accept="image/*">
+          <div style="font-size:12px;color:var(--color-ink-soft);margin-top:5px;">For the quickest upload, a photo under ~200 KB works best — we'll compress it automatically either way.</div>
+          <div id="li-preview"></div>
+        </div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:6px;">
+          <button class="btn btn-ghost" type="button" id="listing-cancel">Cancel</button>
+          <button class="btn btn-primary" type="submit">List it</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <nav class="bottomnav" id="bottomnav"></nav>
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/marketplace.js"></script>
+</body>
+</html>
